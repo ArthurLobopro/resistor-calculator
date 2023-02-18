@@ -21,9 +21,9 @@ function createWindow() {
         }
     })
 
-    if (app.isPackaged) {
-        win.setMenu(null)
-    }
+    // if (app.isPackaged) {
+    //     win.setMenu(null)
+    // }
 
     win.loadFile('public/index.html')
     win.once('ready-to-show', () => { win.show(); win.focus() })
