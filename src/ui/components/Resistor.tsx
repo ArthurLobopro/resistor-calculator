@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
+import { normal_color_name } from "../../constants"
 
 export interface colors {
-    line1: string
-    line2: string
+    line1: normal_color_name | "transparent"
+    line2: normal_color_name | "transparent"
     line3: string
     line4: string
 }

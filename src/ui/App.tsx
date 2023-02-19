@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 import { Resistor, colors } from "./components/Resistor"
-import { GenericColorSelect } from "./components/selects/GenericColorSelect"
-import { LastColorSelect } from "./components/selects/LastColorSelect"
+import {
+    MultiplierColorsSelect,
+    NormalColorsSelect,
+    ToleranceColorsSelect
+} from "./components/selects/colors"
 
 export function App() {
 
@@ -31,25 +34,25 @@ export function App() {
             <div className="flex-row justify-between fill-width margin-vertical-16">
                 <label>
                     <span>Faixa 1: </span>
-                    <GenericColorSelect
+                    <NormalColorsSelect
                         onChange={value => setColors({ ...colors, line1: value })}
                     />
                 </label>
                 <label>
                     <span>Faixa 2: </span>
-                    <GenericColorSelect
+                    <NormalColorsSelect
                         onChange={value => setColors({ ...colors, line2: value })}
                     />
                 </label>
                 <label>
                     <span>Faixa 3: </span>
-                    <GenericColorSelect
+                    <MultiplierColorsSelect
                         onChange={value => setColors({ ...colors, line3: value })}
                     />
                 </label>
                 <label>
                     <span>Faixa 4: </span>
-                    <LastColorSelect
+                    <ToleranceColorsSelect
                         onChange={value => setColors({ ...colors, line4: value })}
                     />
                 </label>
