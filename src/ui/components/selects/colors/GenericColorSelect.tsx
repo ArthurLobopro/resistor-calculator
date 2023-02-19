@@ -26,9 +26,15 @@ export function MakeColorSelect(colors_scheme: colors_scheme) {
                 onChange={event => setColor(event.currentTarget.value as color_names)}
             >
                 <option value="transparent">Selecionar</option>
-                {Object.entries(colors_scheme).map(([color_name, color]) => (
-                    <option key={color_name} value={color_name}>{color.name}</option>
-                ))}
+                {
+                    Object.entries(colors_scheme)
+                        .sort((a, b) => {
+                            return a[1].name.localeCompare(b[1].name)
+                        })
+                        .map(([color_name, color]) => (
+                            <option key={color_name} value={color_name}>{color.name}</option>
+                        ))
+                }
             </select>
         )
     }

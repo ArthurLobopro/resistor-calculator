@@ -17,6 +17,7 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
+    "@electron-fonts/nunito": "^1.0.2",
     "electron-frame": "^1.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
