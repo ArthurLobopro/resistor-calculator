@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
-import { normal_color_name } from "../../constants"
+import { multiplier_color_name, normal_color_name, tolerance_color_name } from "../../constants"
 
 export interface colors {
     line1: normal_color_name | "transparent"
     line2: normal_color_name | "transparent"
-    line3: string
-    line4: string
+    line3: multiplier_color_name | "transparent"
+    line4: tolerance_color_name | "transparent"
 }
 
 interface ResistorProps {

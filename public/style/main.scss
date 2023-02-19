@@ -70,6 +70,18 @@ body {
 
     @extend .flex-column;
     align-items: center;
+
+    #result {
+        width: 100%;
+
+        >div {
+            @extend .fill-width;
+            @extend .flex-row;
+
+            justify-content: center;
+            gap: 20px;
+        }
+    }
 }
 
 select {

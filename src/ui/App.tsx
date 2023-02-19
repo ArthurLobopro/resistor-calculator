@@ -5,6 +5,7 @@ import {
     NormalColorsSelect,
     ToleranceColorsSelect
 } from "./components/selects/colors"
+import { Result } from "./components/Result"
 
 export function App() {
 
@@ -15,17 +16,10 @@ export function App() {
         line4: "transparent"
     } as colors)
 
-    useEffect(() => {
-        const all_colors_submited = Object.values(colors).every(color => color !== "transparent")
-
-        if (all_colors_submited) {
-            console.log("All colors submited")
-        }
-    }, [colors])
-
     return (
         <div id="main">
             <Resistor colors={colors} />
+            <Result colors={colors} />
             <div className="line-title">
                 <div className="spacer"></div>
                 <span className="title">Cores</span>
