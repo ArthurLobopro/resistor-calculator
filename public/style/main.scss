@@ -83,6 +83,14 @@ body {
             gap: 20px;
         }
     }
+
+    >svg {
+        max-width: 50%;
+    }
+}
+
+label {
+    user-select: none;
 }
 
 select {
@@ -102,6 +110,7 @@ select {
     grid-template-columns: 1fr max-content 1fr;
     gap: 10px;
     font-weight: bold;
+    user-select: none;
 
     .spacer {
         display: block;
