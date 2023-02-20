@@ -22,6 +22,21 @@ function calculateResistence(colors: colors) {
     }
 }
 
+function formatOmn(omn_value: number) {
+    const kilo = 1000
+    const mega = 1000000
+
+    if (omn_value > kilo) {
+        return `${omn_value / kilo}kΩ`
+    }
+
+    if (omn_value > mega) {
+        return `${omn_value * mega}MΩ`
+    }
+
+    return `${omn_value}Ω`
+}
+
 
 export function Result(props: { colors: colors }) {
     const all_colors_submited = Object.values(props.colors).every(color => color !== "transparent")
@@ -42,8 +57,10 @@ export function Result(props: { colors: colors }) {
                 <div className="spacer"></div>
             </div> */}
             <div>
-                <span>Resistência: {resistence}</span>
-                <span>Tolerância: {tolerance}% (min: {min} - máx: {max})</span>
+                <span>Resistência: {formatOmn(resistence)}</span>
+                <span>
+                    Tolerância: {tolerance}% (min: {formatOmn(min)} - máx: {formatOmn(max)})
+                </span>
             </div>
         </div>
     )

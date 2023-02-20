@@ -9,6 +9,13 @@
   dependencies:
     electron-css-injector "^1.0.0"
 
+"@electron-fonts/open-sans@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@electron-fonts/open-sans/-/open-sans-1.0.0.tgz#0f9c0bad19fd0c0e603be9b6431a13c9383f5e15"
+  integrity sha512-l1lwZVROTynpnFGRZbcoSkSSNHb/xl3GsPnn8GadR4V8S456lF2+mYeBOiI2Bpf4TIWC++2Hzy670xejL/JvJA==
+  dependencies:
+    electron-css-injector "^1.0.0"
+
 "@electron/get@^2.0.0":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@electron/get/-/get-2.0.2.tgz#ae2a967b22075e9c25aaf00d5941cd79c21efd7e"
