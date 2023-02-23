@@ -1,7 +1,6 @@
 {
   "name": "resistor-calculator",
   "version": "1.0.0",
-  "description": "",
   "main": "dist/main/index.js",
   "scripts": {
     "start": "electron ."
@@ -22,5 +21,14 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "update-electron-app": "^2.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArthurLobopro/resistor-calculator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ArthurLobopro/resistor-calculator/issues"
+  },
+  "homepage": "https://github.com/ArthurLobopro/resistor-calculator#readme",
+  "description": "Calculadora de resistores simples."
 }

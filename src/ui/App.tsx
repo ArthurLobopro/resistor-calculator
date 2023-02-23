@@ -30,6 +30,16 @@ export function App() {
                 modal.hide()
             }} />)
         })
+
+        //Modal tests
+        // setTimeout(() => {
+        //     modal.open(<ReleaseModal onClose={(value) => {
+        //         if (value) {
+        //             ipcRenderer.send("install-update")
+        //         }
+        //         modal.hide()
+        //     }} />)
+        // }, 10000)
     }, [])
 
     return (

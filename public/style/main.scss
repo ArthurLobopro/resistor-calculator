@@ -1,8 +1,16 @@
+@import url(./modal.css);
+
 :root {
+    --modal-background: #FFFFFF;
     --main-background: #1F1F1F;
     --modal-background: #262626;
     --border-color: #ccc;
     --main-color: #ddd;
+
+    --blue: #296dd3;
+    --white: #FAFAFA;
+    --hover-blue: #5699FF;
+    --red: #c32c2c;
 }
 
 * {
@@ -57,6 +65,12 @@ body {
 
 .justify-between {
     justify-content: space-between;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .flex-column-center {
@@ -117,5 +131,29 @@ select {
         width: 100%;
         height: 1px;
         background-color: var(--main-color);
+    }
+}
+
+button {
+    @extend .flex-center;
+    background-color: var(--blue);
+    color: var(--white);
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 8px;
+    padding: 4px 12px;
+    width: max-content;
+    font-family: 'Nunito', sans-serif;
+    user-select: none;
+    justify-self: center;
+
+    &.stroke {
+        background-color: var(--main-background);
+        color: var(--main-color);
+        border: 1px solid;
+
+        &:hover:not(.cancel) {
+            box-shadow: inset 0 0 0 1px var(--main-color);
+        }
     }
 }
