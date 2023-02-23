@@ -1,6 +1,11 @@
+const package = require("./package.json")
+
+const version = package.version
+
 module.exports = {
   packagerConfig: {
     icon: "./build/icon",
+    name: "Resistor Calculator",
     ignore: [
       "\\.git",
       "\\.scss",
@@ -12,8 +17,13 @@ module.exports = {
   rebuildConfig: {},
   makers: [
     {
-      name: '@electron-forge/maker-squirrel',
-      config: {},
+      name: "@electron-forge/maker-squirrel",
+      config: {
+        name: "resistor-calculator",
+        setupIcon: "./build/icon.ico",
+        setupExe: `resistor-calculator-${version}-setup.exe`,
+        iconUrl: "https://raw.githubusercontent.com/ArthurLobopro/resistor-calculator/master/build/icon.ico"
+      }
     },
     {
       name: '@electron-forge/maker-zip',
