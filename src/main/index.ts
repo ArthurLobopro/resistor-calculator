@@ -1,7 +1,12 @@
 import { app, BrowserWindow } from 'electron'
 import path from 'node:path'
 
-require('electron-frame/main')
+import "./main-events"
+import "electron-frame/main"
+
+require("update-electron-app")({
+    notifyUser: false
+})
 
 const appPath = app.getAppPath()
 

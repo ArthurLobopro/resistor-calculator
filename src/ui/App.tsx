@@ -6,6 +6,9 @@ import {
     ToleranceColorsSelect
 } from "./components/selects/colors"
 import { Result } from "./components/Result"
+import { ipcRenderer } from "electron"
+import { useModal } from "./hooks/useModal"
+import { ReleaseModal } from "./components/modals/ReleaseModal"
 
 export function App() {
 
@@ -16,8 +19,22 @@ export function App() {
         line4: "transparent"
     } as colors)
 
+    const modal = useModal()
+
+    useEffect(() => {
+        ipcRenderer.on("update-downloaded", () => {
+            modal.open(<ReleaseModal onClose={(value) => {
+                if (value) {
+                    ipcRenderer.send("install-update")
+                }
+                modal.hide()
+            }} />)
+        })
+    }, [])
+
     return (
         <div id="main">
+            {modal.content}
             <Resistor colors={colors} />
             <Result colors={colors} />
             <div className="line-title">
