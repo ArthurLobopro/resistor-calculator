@@ -9,6 +9,7 @@ import { Result } from "./components/Result"
 import { ipcRenderer } from "electron"
 import { useModal } from "./hooks/useModal"
 import { ReleaseModal } from "./components/modals/ReleaseModal"
+import { LineTitle } from "./components/LineTittle"
 
 export function App() {
 
@@ -30,54 +31,40 @@ export function App() {
                 modal.hide()
             }} />)
         })
-
-        //Modal tests
-        // setTimeout(() => {
-        //     modal.open(<ReleaseModal onClose={(value) => {
-        //         if (value) {
-        //             ipcRenderer.send("install-update")
-        //         }
-        //         modal.hide()
-        //     }} />)
-        // }, 10000)
     }, [])
 
     return (
         <div id="main">
             {modal.content}
             <Resistor colors={colors} />
-            <Result colors={colors} />
-            <div className="line-title">
-                <div className="spacer"></div>
-                <span className="title">Cores</span>
-                <div className="spacer"></div>
-            </div>
-            <div className="flex-row justify-between fill-width margin-vertical-16">
+            <LineTitle title="Cores" />
+            <div className="flex-row justify-around fill-width margin-vertical-16">
                 <label>
-                    <span>Faixa 1: </span>
+                    <span>Faixa 1 (A): </span>
                     <NormalColorsSelect
                         onChange={value => setColors({ ...colors, line1: value })}
                     />
                 </label>
                 <label>
-                    <span>Faixa 2: </span>
+                    <span>Faixa 2 (B): </span>
                     <NormalColorsSelect
                         onChange={value => setColors({ ...colors, line2: value })}
                     />
                 </label>
                 <label>
-                    <span>Faixa 3: </span>
+                    <span>Faixa 3 (C): </span>
                     <MultiplierColorsSelect
                         onChange={value => setColors({ ...colors, line3: value })}
                     />
                 </label>
                 <label>
-                    <span>Faixa 4: </span>
+                    <span>Faixa 4 (D): </span>
                     <ToleranceColorsSelect
                         onChange={value => setColors({ ...colors, line4: value })}
                     />
                 </label>
             </div>
+            <Result colors={colors} />
         </div>
     )
 }

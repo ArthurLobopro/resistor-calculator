@@ -1,15 +1,27 @@
 import { normal_colors, normal_color_name, multiplier_color_name, tolerance_color_name, multiplier_colors, tolerance_colors } from "../../constants"
+import { LineTitle } from "./LineTittle"
 import { colors } from "./Resistor"
 
-function calculateResistence(colors: colors) {
+function getBandsValues(colors: colors) {
     const line1_value = normal_colors[colors.line1 as normal_color_name].value * 10
     const line2_value = normal_colors[colors.line2 as normal_color_name].value
 
     const multiplier = multiplier_colors[colors.line3 as multiplier_color_name].value
 
-    const resistence = (line1_value + line2_value) * multiplier
-
     const tolerance = tolerance_colors[colors.line4 as tolerance_color_name].value
+
+    return {
+        line1_value,
+        line2_value,
+        multiplier,
+        tolerance
+    }
+}
+
+function calculateResistence(colors: colors) {
+    const { line1_value, line2_value, multiplier, tolerance } = getBandsValues(colors)
+
+    const resistence = (line1_value + line2_value) * multiplier
 
     const min = resistence - (resistence * tolerance / 100)
     const max = resistence + (resistence * tolerance / 100)
@@ -26,12 +38,12 @@ function formatOmn(omn_value: number) {
     const kilo = 1000
     const mega = 1000000
 
-    if (omn_value > kilo) {
-        return `${omn_value / kilo}kΩ`
+    if (omn_value > mega) {
+        return `${omn_value / mega}MΩ`
     }
 
-    if (omn_value > mega) {
-        return `${omn_value * mega}MΩ`
+    if (omn_value > kilo) {
+        return `${omn_value / kilo}kΩ`
     }
 
     return `${omn_value}Ω`
@@ -49,19 +61,41 @@ export function Result(props: { colors: colors }) {
         resistence, tolerance, min, max
     } = calculateResistence(props.colors)
 
+    const { line1_value: A, line2_value: B, multiplier: C, tolerance: D } = getBandsValues(props.colors)
+
     return (
-        <div id="result">
-            {/* <div className="line-title">
-                <div className="spacer"></div>
-                <span className="title">Resultado</span>
-                <div className="spacer"></div>
-            </div> */}
-            <div>
-                <span>Resistência: {formatOmn(resistence)}</span>
-                <span>
-                    Tolerância: {tolerance}% (min: {formatOmn(min)} - máx: {formatOmn(max)})
-                </span>
+        <>
+            <LineTitle title="Resultado" />
+            <div id="result">
+                <div>
+                    <div className="flex-row justify-around fill-width margin-vertical-16">
+                        <div className="flex-column">
+                            <div className="flex-center fill-width">
+                                Faixas
+                            </div>
+                            <span>A: {A}</span>
+                            <span>B: {B}</span>
+                            <span>C: {formatOmn(C)}</span>
+                            <span>D: {D}%</span>
+                        </div>
+
+                        <div className="flex-column-center">
+                            <span>Resistência = (A x 10 + B) x C</span>
+                            <span>Resistência = ({A} x 10 + {B}) x {formatOmn(C)}</span>
+                            <span>Resistência = ({A * 10} + {B}) x {formatOmn(C)}</span>
+                            <span>Resistência = {A * 10 + B} x {formatOmn(C)}</span>
+                            <span>Resistência = {formatOmn(resistence)}</span>
+                        </div>
+
+                        <div className="flex-column-center">
+                            <span>Resistência = {formatOmn(resistence)}</span>
+                            <span>Tolerância = {tolerance}%</span>
+                            <span>Valor mínimo = {formatOmn(min)}</span>
+                            <span>Valor máximo = {formatOmn(max)}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
