@@ -1,4 +1,6 @@
 @import url(./modal.css);
+@import url(./header.css);
+@import url(./page.css);
 
 :root {
     --modal-background: #FFFFFF;
@@ -33,7 +35,6 @@ body {
 #root {
     height: 100%;
     display: grid;
-    @extend .spacing-16;
 }
 
 .dashed-border {
@@ -85,6 +86,7 @@ body {
 
     @extend .flex-column;
     align-items: center;
+    margin: 16px;
 
     #result {
         width: 100%;

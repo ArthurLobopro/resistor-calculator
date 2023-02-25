@@ -90,10 +90,10 @@ export function Result(props: { colors: colors }) {
 
                         <div className="flex-column-center">
                             Valores:
-                            <span>Resistência = {formatOmn(resistence)}</span>
-                            <span>Tolerância = {tolerance}%</span>
-                            <span>Valor mínimo = {formatOmn(min)}</span>
-                            <span>Valor máximo = {formatOmn(max)}</span>
+                            <span>Resistência: {formatOmn(resistence)}</span>
+                            <span>Tolerância: {tolerance}%</span>
+                            <span>Valor mínimo: {formatOmn(min)}</span>
+                            <span>Valor máximo: {formatOmn(max)}</span>
                         </div>
                     </div>
                 </div>
