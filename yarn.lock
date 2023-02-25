@@ -957,6 +957,11 @@ console-control-strings@^1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==
 
+correct-operations@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/correct-operations/-/correct-operations-1.0.0.tgz#6ba0940929e4797053363cb1d337edc2dc616163"
+  integrity sha512-UMI2R3m1t5n1Gv3dEqZOhbIVWBHrRgfVIS2GrsAUH9OvyBbPrLt7aq17apLqnmfmDJgGnKtwIvpgI4uMOTDjCg==
+
 cross-spawn-windows-exe@^1.1.0, cross-spawn-windows-exe@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/cross-spawn-windows-exe/-/cross-spawn-windows-exe-1.2.0.tgz#46253b0f497676e766faf4a7061004618b5ac5ec"

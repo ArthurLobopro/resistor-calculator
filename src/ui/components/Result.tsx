@@ -1,9 +1,10 @@
+import { sum, mult } from "correct-operations"
 import { normal_colors, normal_color_name, multiplier_color_name, tolerance_color_name, multiplier_colors, tolerance_colors } from "../../constants"
 import { LineTitle } from "./LineTittle"
 import { colors } from "./Resistor"
 
 function getBandsValues(colors: colors) {
-    const line1_value = normal_colors[colors.line1 as normal_color_name].value * 10
+    const line1_value = normal_colors[colors.line1 as normal_color_name].value
     const line2_value = normal_colors[colors.line2 as normal_color_name].value
 
     const multiplier = multiplier_colors[colors.line3 as multiplier_color_name].value
@@ -21,7 +22,7 @@ function getBandsValues(colors: colors) {
 function calculateResistence(colors: colors) {
     const { line1_value, line2_value, multiplier, tolerance } = getBandsValues(colors)
 
-    const resistence = (line1_value + line2_value) * multiplier
+    const resistence = mult(sum(line1_value * 10, line2_value), multiplier)
 
     const min = resistence - (resistence * tolerance / 100)
     const max = resistence + (resistence * tolerance / 100)
@@ -38,11 +39,11 @@ function formatOmn(omn_value: number) {
     const kilo = 1000
     const mega = 1000000
 
-    if (omn_value > mega) {
+    if (omn_value >= mega) {
         return `${omn_value / mega}MΩ`
     }
 
-    if (omn_value > kilo) {
+    if (omn_value >= kilo) {
         return `${omn_value / kilo}kΩ`
     }
 
@@ -83,11 +84,12 @@ export function Result(props: { colors: colors }) {
                             <span>Resistência = (A x 10 + B) x C</span>
                             <span>Resistência = ({A} x 10 + {B}) x {formatOmn(C)}</span>
                             <span>Resistência = ({A * 10} + {B}) x {formatOmn(C)}</span>
-                            <span>Resistência = {A * 10 + B} x {formatOmn(C)}</span>
+                            <span>Resistência = {sum(A * 10, B)} x {formatOmn(C)}</span>
                             <span>Resistência = {formatOmn(resistence)}</span>
                         </div>
 
                         <div className="flex-column-center">
+                            Valores:
                             <span>Resistência = {formatOmn(resistence)}</span>
                             <span>Tolerância = {tolerance}%</span>
                             <span>Valor mínimo = {formatOmn(min)}</span>
