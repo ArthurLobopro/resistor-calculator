@@ -6,6 +6,7 @@ import { FourBandResistor, four_band_colors } from "../components/resistors/Four
 import { FourBandResult } from "../components/results/FourBandResult"
 import { MultiplierColorsSelect, NormalColorsSelect, ToleranceColorsSelect } from "../components/selects/colors"
 import { useModal } from "../hooks/useModal"
+import { ReturnButton } from "../components/ReturnButton"
 
 export function FourBand() {
 
@@ -19,7 +20,7 @@ export function FourBand() {
     const modal = useModal()
     return (
         <Page>
-            <Header title="Resistor de 4 faixas" />
+            <Header title="Resistor de 4 faixas" left={<ReturnButton />} />
             <div className="main">
                 {modal.content}
                 <FourBandResistor colors={colors} />
