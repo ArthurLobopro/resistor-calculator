@@ -11,7 +11,7 @@ import { ReleaseModal } from "./components/modals/ReleaseModal"
 import { LineTitle } from "./components/LineTittle"
 import { Header } from "./components/Header"
 import { Page } from "./components/Page"
-import { Resistor, colors } from "./components/resistors/FourBandResistor"
+import { FourBandResistor, four_band_colors } from "./components/resistors/FourBandResistor"
 
 export function App() {
 
@@ -20,7 +20,7 @@ export function App() {
         line2: "transparent",
         line3: "transparent",
         line4: "transparent"
-    } as colors)
+    } as four_band_colors)
 
     const modal = useModal()
 
@@ -40,7 +40,7 @@ export function App() {
             <Header title="Resistor de 4 faixas" />
             <div id="main">
                 {modal.content}
-                <Resistor colors={colors} />
+                <FourBandResistor colors={colors} />
                 <LineTitle title="Cores" />
                 <div className="flex-row justify-around fill-width margin-vertical-16">
                     <label>

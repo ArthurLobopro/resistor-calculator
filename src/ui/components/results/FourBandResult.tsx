@@ -1,9 +1,9 @@
 import { sum, mult } from "correct-operations"
 import { normal_colors, normal_color_name, multiplier_color_name, tolerance_color_name, multiplier_colors, tolerance_colors } from "../../../constants"
 import { LineTitle } from "../LineTittle"
-import { colors } from "../resistors/FourBandResistor"
+import { four_band_colors } from "../resistors/FourBandResistor"
 
-function getBandsValues(colors: colors) {
+function getBandsValues(colors: four_band_colors) {
     const line1_value = normal_colors[colors.line1 as normal_color_name].value
     const line2_value = normal_colors[colors.line2 as normal_color_name].value
 
@@ -19,7 +19,7 @@ function getBandsValues(colors: colors) {
     }
 }
 
-function calculateResistence(colors: colors) {
+function calculateResistence(colors: four_band_colors) {
     const { line1_value, line2_value, multiplier, tolerance } = getBandsValues(colors)
 
     const resistence = mult(sum(line1_value * 10, line2_value), multiplier)
@@ -51,7 +51,7 @@ function formatOmn(omn_value: number) {
 }
 
 
-export function FourBandResult(props: { colors: colors }) {
+export function FourBandResult(props: { colors: four_band_colors }) {
     const all_colors_submited = Object.values(props.colors).every(color => color !== "transparent")
 
     if (!all_colors_submited) {

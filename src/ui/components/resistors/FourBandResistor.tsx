@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react"
 import { normal_color_name, multiplier_color_name, tolerance_color_name } from "../../../constants"
 
-export interface colors {
+export interface four_band_colors {
     line1: normal_color_name | "transparent"
     line2: normal_color_name | "transparent"
     line3: multiplier_color_name | "transparent"
     line4: tolerance_color_name | "transparent"
 }
 
-interface ResistorProps {
-    colors: colors
+interface FourBandResistorProps {
+    colors: four_band_colors
 }
 
-export function Resistor(props: ResistorProps) {
+export function FourBandResistor(props: FourBandResistorProps) {
 
     const [colors, setColors] = useState(props.colors)
 
