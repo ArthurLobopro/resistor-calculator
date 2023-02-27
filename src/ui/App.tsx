@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { Resistor, colors } from "./components/Resistor"
 import {
     MultiplierColorsSelect,
     NormalColorsSelect,
@@ -12,6 +11,7 @@ import { ReleaseModal } from "./components/modals/ReleaseModal"
 import { LineTitle } from "./components/LineTittle"
 import { Header } from "./components/Header"
 import { Page } from "./components/Page"
+import { Resistor, colors } from "./components/resistors/FourBandResistor"
 
 export function App() {
 

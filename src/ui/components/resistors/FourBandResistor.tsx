@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { multiplier_color_name, normal_color_name, tolerance_color_name } from "../../constants"
+import { normal_color_name, multiplier_color_name, tolerance_color_name } from "../../../constants"
 
 export interface colors {
     line1: normal_color_name | "transparent"
