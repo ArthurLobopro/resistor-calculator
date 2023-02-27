@@ -2,6 +2,8 @@
 @import url(./header.css);
 @import url(./page.css);
 
+@import url(./pages/home.css);
+
 :root {
     --modal-background: #FFFFFF;
     --main-background: #1F1F1F;
@@ -80,7 +82,7 @@ body {
     align-items: center;
 }
 
-#main {
+.main {
     @extend .dashed-border;
     @extend .spacing-16;
 
