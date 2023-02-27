@@ -1,7 +1,7 @@
 import { sum, mult } from "correct-operations"
-import { normal_colors, normal_color_name, multiplier_color_name, tolerance_color_name, multiplier_colors, tolerance_colors } from "../../constants"
-import { LineTitle } from "./LineTittle"
-import { colors } from "./resistors/FourBandResistor"
+import { normal_colors, normal_color_name, multiplier_color_name, tolerance_color_name, multiplier_colors, tolerance_colors } from "../../../constants"
+import { LineTitle } from "../LineTittle"
+import { colors } from "../resistors/FourBandResistor"
 
 function getBandsValues(colors: colors) {
     const line1_value = normal_colors[colors.line1 as normal_color_name].value
@@ -51,7 +51,7 @@ function formatOmn(omn_value: number) {
 }
 
 
-export function Result(props: { colors: colors }) {
+export function FourBandResult(props: { colors: colors }) {
     const all_colors_submited = Object.values(props.colors).every(color => color !== "transparent")
 
     if (!all_colors_submited) {

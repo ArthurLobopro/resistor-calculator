@@ -4,7 +4,7 @@ import {
     NormalColorsSelect,
     ToleranceColorsSelect
 } from "./components/selects/colors"
-import { Result } from "./components/Result"
+import { FourBandResult } from "./components/results/FourBandResult"
 import { ipcRenderer } from "electron"
 import { useModal } from "./hooks/useModal"
 import { ReleaseModal } from "./components/modals/ReleaseModal"
@@ -68,7 +68,7 @@ export function App() {
                         />
                     </label>
                 </div>
-                <Result colors={colors} />
+                <FourBandResult colors={colors} />
             </div>
         </Page>
     )
