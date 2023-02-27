@@ -4,7 +4,7 @@ export const tolerance_colors = {
         value: 10
     },
     gold: {
-        name: "Ouro",
+        name: "Dourado",
         value: 5
     },
     brown: {

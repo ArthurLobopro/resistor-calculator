@@ -1,6 +1,6 @@
 {
   "name": "resistor-calculator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/main/index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@electron-fonts/nunito": "^1.0.2",
+    "correct-operations": "^1.0.0",
     "electron-frame": "^1.2.5",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^18.2.0",

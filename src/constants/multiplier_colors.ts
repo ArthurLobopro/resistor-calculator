@@ -4,7 +4,7 @@ export const multiplier_colors = {
         value: 0.01
     },
     gold: {
-        name: "Ouro",
+        name: "Dourado",
         value: 0.1
     },
     black: {

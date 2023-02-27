@@ -1,0 +1,8 @@
+.page {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content auto;
+
+    height: 100%;
+    padding: 5px;
+}

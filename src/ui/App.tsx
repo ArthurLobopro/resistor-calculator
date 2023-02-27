@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react"
-import { Resistor, colors } from "./components/Resistor"
 import {
     MultiplierColorsSelect,
     NormalColorsSelect,
     ToleranceColorsSelect
 } from "./components/selects/colors"
-import { Result } from "./components/Result"
+import { FourBandResult } from "./components/results/FourBandResult"
 import { ipcRenderer } from "electron"
 import { useModal } from "./hooks/useModal"
 import { ReleaseModal } from "./components/modals/ReleaseModal"
+import { LineTitle } from "./components/LineTittle"
+import { Header } from "./components/Header"
+import { Page } from "./components/Page"
+import { FourBandResistor, four_band_colors } from "./components/resistors/FourBandResistor"
 
 export function App() {
 
@@ -17,7 +20,7 @@ export function App() {
         line2: "transparent",
         line3: "transparent",
         line4: "transparent"
-    } as colors)
+    } as four_band_colors)
 
     const modal = useModal()
 
@@ -30,54 +33,43 @@ export function App() {
                 modal.hide()
             }} />)
         })
-
-        //Modal tests
-        // setTimeout(() => {
-        //     modal.open(<ReleaseModal onClose={(value) => {
-        //         if (value) {
-        //             ipcRenderer.send("install-update")
-        //         }
-        //         modal.hide()
-        //     }} />)
-        // }, 10000)
     }, [])
 
     return (
-        <div id="main">
-            {modal.content}
-            <Resistor colors={colors} />
-            <Result colors={colors} />
-            <div className="line-title">
-                <div className="spacer"></div>
-                <span className="title">Cores</span>
-                <div className="spacer"></div>
+        <Page>
+            <Header title="Resistor de 4 faixas" />
+            <div id="main">
+                {modal.content}
+                <FourBandResistor colors={colors} />
+                <LineTitle title="Cores" />
+                <div className="flex-row justify-around fill-width margin-vertical-16">
+                    <label>
+                        <span>Faixa 1 (A): </span>
+                        <NormalColorsSelect
+                            onChange={value => setColors({ ...colors, line1: value })}
+                        />
+                    </label>
+                    <label>
+                        <span>Faixa 2 (B): </span>
+                        <NormalColorsSelect
+                            onChange={value => setColors({ ...colors, line2: value })}
+                        />
+                    </label>
+                    <label>
+                        <span>Faixa 3 (C): </span>
+                        <MultiplierColorsSelect
+                            onChange={value => setColors({ ...colors, line3: value })}
+                        />
+                    </label>
+                    <label>
+                        <span>Faixa 4 (D): </span>
+                        <ToleranceColorsSelect
+                            onChange={value => setColors({ ...colors, line4: value })}
+                        />
+                    </label>
+                </div>
+                <FourBandResult colors={colors} />
             </div>
-            <div className="flex-row justify-between fill-width margin-vertical-16">
-                <label>
-                    <span>Faixa 1: </span>
-                    <NormalColorsSelect
-                        onChange={value => setColors({ ...colors, line1: value })}
-                    />
-                </label>
-                <label>
-                    <span>Faixa 2: </span>
-                    <NormalColorsSelect
-                        onChange={value => setColors({ ...colors, line2: value })}
-                    />
-                </label>
-                <label>
-                    <span>Faixa 3: </span>
-                    <MultiplierColorsSelect
-                        onChange={value => setColors({ ...colors, line3: value })}
-                    />
-                </label>
-                <label>
-                    <span>Faixa 4: </span>
-                    <ToleranceColorsSelect
-                        onChange={value => setColors({ ...colors, line4: value })}
-                    />
-                </label>
-            </div>
-        </div>
+        </Page>
     )
 }
