@@ -1,4 +1,4 @@
-import { mult, sum } from "correct-operations"
+import { div, mult, sub, sum } from "correct-operations"
 import { multiplier_color_name, multiplier_colors, normal_color_name, normal_colors, tolerance_color_name, tolerance_colors } from "../../../constants"
 import { formatOmn } from "../../util"
 import { LineTitle } from "../LineTittle"
@@ -25,8 +25,8 @@ function calculateResistence(colors: four_band_colors) {
 
     const resistence = mult(sum(line1_value * 10, line2_value), multiplier)
 
-    const min = resistence - (resistence * tolerance / 100)
-    const max = resistence + (resistence * tolerance / 100)
+    const min = sub(resistence, mult(resistence, div(tolerance, 100)))
+    const max = sum(resistence, mult(resistence, div(tolerance, 100)))
 
     return {
         resistence,
