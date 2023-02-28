@@ -1,6 +1,8 @@
 const package = require("./package.json")
 const { execSync } = require("child_process")
 
+const { generateIcons } = require("./scripts/generate-icons.js")
+
 const version = package.version
 
 module.exports = {
@@ -56,6 +58,8 @@ module.exports = {
         async generateAssets() {
             return new Promise(async (resolve, reject) => {
                 try {
+                    console.log("Generating icons...")
+                    await generateIcons()
                     console.log("Compiling TypeScript...")
                     execSync("yarn tsc")
                     console.log("Compiling SASS...")

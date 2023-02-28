@@ -1,0 +1,34 @@
+#home {
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .page-option {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        gap: 16px;
+
+        width: 100%;
+        border-radius: 12px;
+        background-color: #141414;
+        user-select: none;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(90, 90, 90, 0.31);
+        }
+
+        >.icon {
+            border-right: 1px solid var(--main-color);
+            padding: 16px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
