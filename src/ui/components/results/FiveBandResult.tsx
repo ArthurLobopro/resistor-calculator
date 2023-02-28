@@ -1,32 +1,34 @@
-import { mult, sum } from "correct-operations"
+import { div, mult, sub, sum } from "correct-operations"
 import { multiplier_color_name, multiplier_colors, normal_color_name, normal_colors, tolerance_color_name, tolerance_colors } from "../../../constants"
-import { formatOmn } from "../../util"
+import { five_band_colors } from "../resistors/FiveBandResistor"
 import { LineTitle } from "../LineTittle"
-import { four_band_colors } from "../resistors/FourBandResistor"
+import { formatOmn } from "../../util"
 
-function getBandsValues(colors: four_band_colors) {
+function getBandsValues(colors: five_band_colors) {
     const line1_value = normal_colors[colors.line1 as normal_color_name].value
     const line2_value = normal_colors[colors.line2 as normal_color_name].value
+    const line3_value = normal_colors[colors.line3 as normal_color_name].value
 
-    const multiplier = multiplier_colors[colors.line3 as multiplier_color_name].value
+    const multiplier = multiplier_colors[colors.line4 as multiplier_color_name].value
 
-    const tolerance = tolerance_colors[colors.line4 as tolerance_color_name].value
+    const tolerance = tolerance_colors[colors.line5 as tolerance_color_name].value
 
     return {
         line1_value,
         line2_value,
+        line3_value,
         multiplier,
         tolerance
     }
 }
 
-function calculateResistence(colors: four_band_colors) {
-    const { line1_value, line2_value, multiplier, tolerance } = getBandsValues(colors)
+function calculateResistence(colors: five_band_colors) {
+    const { line1_value, line2_value, line3_value, multiplier, tolerance } = getBandsValues(colors)
 
-    const resistence = mult(sum(line1_value * 10, line2_value), multiplier)
+    const resistence = mult(sum(line3_value * 100, sum(line2_value * 10, line1_value)), multiplier)
 
-    const min = resistence - (resistence * tolerance / 100)
-    const max = resistence + (resistence * tolerance / 100)
+    const min = sub(resistence, mult(resistence, div(tolerance, 100)))
+    const max = sum(resistence, mult(resistence, div(tolerance, 100)))
 
     return {
         resistence,
@@ -36,11 +38,11 @@ function calculateResistence(colors: four_band_colors) {
     }
 }
 
-interface FourBandResultProps {
-    colors: four_band_colors
+interface FiveBandResultProps {
+    colors: five_band_colors
 }
 
-export function FourBandResult(props: FourBandResultProps) {
+export function FiveBandResult(props: FiveBandResultProps) {
     const all_colors_submited = Object.values(props.colors).every(color => color !== "transparent")
 
     if (!all_colors_submited) {
@@ -51,7 +53,7 @@ export function FourBandResult(props: FourBandResultProps) {
         resistence, tolerance, min, max
     } = calculateResistence(props.colors)
 
-    const { line1_value: A, line2_value: B, multiplier: C, tolerance: D } = getBandsValues(props.colors)
+    const { line1_value: A, line2_value: B, line3_value: C, multiplier: D, tolerance: E } = getBandsValues(props.colors)
 
     return (
         <>
@@ -65,15 +67,25 @@ export function FourBandResult(props: FourBandResultProps) {
                             </div>
                             <span>A: {A}</span>
                             <span>B: {B}</span>
-                            <span>C: {formatOmn(C)}</span>
-                            <span>D: {D}%</span>
+                            <span>C: {C}</span>
+                            <span>D: {formatOmn(D)}</span>
+                            <span>E: {E}%</span>
                         </div>
 
                         <div className="flex-column-center">
-                            <span>Resistência = (A x 10 + B) x C</span>
-                            <span>Resistência = ({A} x 10 + {B}) x {formatOmn(C)}</span>
-                            <span>Resistência = ({A * 10} + {B}) x {formatOmn(C)}</span>
-                            <span>Resistência = {sum(A * 10, B)} x {formatOmn(C)}</span>
+                            <span>
+                                Resistência = (A x 100 + B x 10 + C) x D
+                            </span>
+                            <span>
+                                Resistência = ({A} x 100 + {B} x 10 + {C}) x {formatOmn(D)}
+                            </span>
+                            <span>Resistência = ({[
+                                mult(A, 100),
+                                mult(B, 10),
+                                C
+                            ].join(" + ")} x {formatOmn(D)})
+                            </span>
+                            <span>Resistência = {div(resistence, D)} x {formatOmn(D)} </span>
                             <span>Resistência = {formatOmn(resistence)}</span>
                         </div>
 

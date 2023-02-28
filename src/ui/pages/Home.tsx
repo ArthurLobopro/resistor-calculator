@@ -19,6 +19,14 @@ export function Home() {
                         Resistor de 4 faixas
                     </div>
                 </div>
+                <div className="page-option" onClick={() => navigate("/5-band")}>
+                    <div className="icon">
+                        <Minified4BandResistor />
+                    </div>
+                    <div>
+                        Resistor de 5 faixas
+                    </div>
+                </div>
             </div>
         </Page>
     )
