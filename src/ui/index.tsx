@@ -6,3 +6,6 @@ const root_element = document.getElementById("root") as HTMLDivElement
 const root = createRoot(root_element)
 
 root.render(<App />)
+
+require("./Fonts")
+require("./Frame")
